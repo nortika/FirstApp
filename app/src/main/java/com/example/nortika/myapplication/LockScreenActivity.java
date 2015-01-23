@@ -19,6 +19,8 @@ public class LockScreenActivity extends ActionBarActivity {
     private TextView taskLabel, dateLabel, timeLabel;
     private ImageButton btnRight, btnLeft;
     private int idx = 0;
+    private int totalCnt = 0;
+    String s[] = null;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -38,7 +40,7 @@ public class LockScreenActivity extends ActionBarActivity {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
 
-        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy - MM - dd");
         SimpleDateFormat CurTimeFormat = new SimpleDateFormat("HH:mm");
 
         String strCurDate = CurDateFormat.format(date);
@@ -50,7 +52,8 @@ public class LockScreenActivity extends ActionBarActivity {
         dateLabel.setText(strCurDate);
         timeLabel.setText(strCurTime);
 
-        String s[] = { "맥 가져오기", "병원가기" };
+        s = new String[]{ "맥 가져오기", "병원가기" };
+        totalCnt = s.length;
 
         taskLabel= (TextView)findViewById(R.id.txtTaskList);
 
@@ -59,7 +62,7 @@ public class LockScreenActivity extends ActionBarActivity {
         else if(s.length == 1){
             taskLabel.setText(s[0]);
         }
-        else if(s.length == 2){
+        else if(2 <= s.length){
             taskLabel.setText(s[0]);
             btnRight.setVisibility(View.VISIBLE);
         }
@@ -67,16 +70,24 @@ public class LockScreenActivity extends ActionBarActivity {
         btnRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LockScreenActivity.this, ScreenService.class);
-                startService(intent);
+                taskLabel.setText(s[++idx]);
+                btnLeft.setVisibility(View.VISIBLE);
+
+                if((idx + 1) == totalCnt) {
+                    btnRight.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LockScreenActivity.this, ScreenService.class);
-                stopService(intent);
+                taskLabel.setText(s[--idx]);
+                btnRight.setVisibility(View.VISIBLE);
+
+                if(idx == 0) {
+                    btnLeft.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }

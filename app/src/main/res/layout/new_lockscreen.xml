@@ -1,36 +1,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:addroid="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTitle"
-        android:textStyle="bold|italic"
-        android:textSize="30dip"
-        android:typeface="serif" />
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#ff555564">
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtDate"
-        android:textStyle="bold"
         android:textSize="25dip"
         android:typeface="normal"
         android:layout_below="@+id/txtTitle"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffedff3e" />
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtTime"
-        android:textStyle="bold"
         android:textSize="25dip"
         android:typeface="normal"
         android:layout_below="@+id/txtDate"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffedff3e" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,9 +38,10 @@
         android:id="@+id/txtTaskList"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
         android:textSize="20dip"
-        android:typeface="sans" />
+
+        android:typeface="sans"
+        android:textColor="#ffedff3e" />
 
     <ImageButton
         android:layout_width="wrap_content"
