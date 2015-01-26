@@ -39,7 +39,6 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="20dip"
-
         android:typeface="sans"
         android:textColor="#ffedff3e" />
 

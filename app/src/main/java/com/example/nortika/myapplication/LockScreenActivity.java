@@ -1,6 +1,7 @@
 package com.example.nortika.myapplication;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,9 @@ public class LockScreenActivity extends ActionBarActivity {
 
         btnRight = (ImageButton)findViewById(R.id.imgRight);
         btnLeft = (ImageButton)findViewById(R.id.imgLeft);
+        taskLabel= (TextView)findViewById(R.id.txtTaskList);
+        Typeface face = Typeface.createFromAsset(getAssets(), "DroidSans.ttf");
+        taskLabel.setTypeface(face);
 
         btnRight.setVisibility(View.INVISIBLE);
         btnLeft.setVisibility(View.INVISIBLE);
@@ -40,7 +44,7 @@ public class LockScreenActivity extends ActionBarActivity {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
 
-        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy - MM - dd");
+        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         SimpleDateFormat CurTimeFormat = new SimpleDateFormat("HH:mm");
 
         String strCurDate = CurDateFormat.format(date);
@@ -54,8 +58,6 @@ public class LockScreenActivity extends ActionBarActivity {
 
         s = new String[]{ "맥 가져오기", "병원가기" };
         totalCnt = s.length;
-
-        taskLabel= (TextView)findViewById(R.id.txtTaskList);
 
         if(s.length == 0)
             taskLabel.setText("할일 없음");
