@@ -35,8 +35,13 @@ public class LockScreenActivity extends ActionBarActivity {
         btnRight = (ImageButton)findViewById(R.id.imgRight);
         btnLeft = (ImageButton)findViewById(R.id.imgLeft);
         taskLabel= (TextView)findViewById(R.id.txtTaskList);
-        Typeface face = Typeface.createFromAsset(getAssets(), "DroidSans.ttf");
+        dateLabel=(TextView)findViewById(R.id.txtDate);
+        timeLabel=(TextView)findViewById(R.id.txtTime);
+
+        Typeface face = Typeface.createFromAsset(getAssets(), "font/tetrisL.ttf");
         taskLabel.setTypeface(face);
+        dateLabel.setTypeface(face);
+        timeLabel.setTypeface(face);
 
         btnRight.setVisibility(View.INVISIBLE);
         btnLeft.setVisibility(View.INVISIBLE);
@@ -49,9 +54,6 @@ public class LockScreenActivity extends ActionBarActivity {
 
         String strCurDate = CurDateFormat.format(date);
         String strCurTime = CurTimeFormat.format(date);
-
-        dateLabel=(TextView)findViewById(R.id.txtDate);
-        timeLabel=(TextView)findViewById(R.id.txtTime);
 
         dateLabel.setText(strCurDate);
         timeLabel.setText(strCurTime);
