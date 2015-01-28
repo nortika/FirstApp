@@ -10,23 +10,24 @@
     tools:context=".MainActivity"
     android:background="#ff4b4b58">
 
-    <TextView android:text="aa" android:layout_width="wrap_content"
+    <TextClock
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtDate"
-        android:textSize="20dip"
-        android:typeface="normal"
+        android:id="@+id/textClock"
+        android:textSize="60dip"
         android:textColor="#ffedff3e"
-        android:layout_marginBottom="58dp"
-        android:layout_above="@+id/imgRight"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/txtDate"
+        android:text="ㅋ" />
 
     <TextView android:text="aa" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTime"
-        android:textSize="80dip"
+        android:id="@+id/txtDate"
+        android:textSize="30dip"
         android:typeface="normal"
         android:textColor="#ffedff3e"
-        android:layout_above="@+id/txtDate"
+        android:layout_marginBottom="99dp"
+        android:layout_above="@+id/txtTaskList"
         android:layout_centerHorizontal="true" />
 
     <TextView

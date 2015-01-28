@@ -3,23 +3,20 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTitle" />
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ff616161">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="On"
         android:id="@+id/btn1"
-        android:layout_below="@+id/txtTitle"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="213dp"
         android:layout_marginEnd="213dp"
-        android:layout_marginTop="95dp" />
+        android:layout_marginTop="95dp"
+        android:background="#ffeaff4c" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,6 +27,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="77dp"
-        android:layout_marginEnd="77dp" />
+        android:layout_marginEnd="77dp"
+        android:background="#ffeaff4c" />
 
 </RelativeLayout>
