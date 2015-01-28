@@ -66,4 +66,34 @@
         android:scaleType="centerCrop"
         android:layout_alignParentStart="true" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgCenter"
+        android:background="#00000000"
+        android:src="@drawable/center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:background="#00000000"
+        android:src="@drawable/unlock_2"
+        android:layout_alignTop="@+id/imgCenter"
+        android:layout_alignRight="@+id/imgRight"
+        android:layout_alignEnd="@+id/imgRight" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        android:background="#00000000"
+        android:src="@drawable/app_2"
+        android:layout_alignBottom="@+id/imgCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
