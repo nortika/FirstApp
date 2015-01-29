@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:background="#ff4b4b58">
+    android:background="#ff383838">
 
     <TextClock
         android:layout_width="wrap_content"
@@ -79,9 +79,9 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
+        android:id="@+id/imgUnlock"
         android:background="#00000000"
-        android:src="@drawable/unlock_2"
+        android:src="@drawable/unlock3"
         android:layout_alignTop="@+id/imgCenter"
         android:layout_alignRight="@+id/imgRight"
         android:layout_alignEnd="@+id/imgRight" />
@@ -89,10 +89,10 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgIntoApp"
         android:background="#00000000"
-        android:src="@drawable/app_2"
-        android:layout_alignBottom="@+id/imgCenter"
+        android:src="@drawable/app4"
+        android:layout_alignTop="@+id/imgCenter"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

@@ -1,6 +1,11 @@
 package com.example.nortika.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
@@ -24,13 +29,16 @@ import java.util.TimerTask;
 /**
  * Created by nortika on 2015-01-15.
  */
-public class LockScreenActivity extends FragmentActivity implements OnGestureListener {
+public class LockScreenActivity extends Activity implements OnGestureListener, View.OnTouchListener {
 
     private TextView taskLabel, dateLabel;
     private ImageButton btnRight, btnLeft;
     private int idx = 0;
     private int totalCnt = 0;
     String s[] = null;
+
+    private ImageButton imgCenter, imgUnlock, imgIntoApp;
+    private  int x, y;
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -44,6 +52,19 @@ public class LockScreenActivity extends FragmentActivity implements OnGestureLis
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_lockscreen);
+
+        imgCenter = (ImageButton) this.findViewById(R.id.imgCenter);
+        imgCenter.setOnTouchListener(this);
+
+       /* Paint p=new Paint();
+        p.setTextSize(20);
+        p.setColor(Color.WHITE);
+
+        Canvas canvas = new Canvas();
+        canvas.drawText("Center X:" + imgCenter.getX() + ", Center Y:" + imgCenter.getY(), 0, 20, p);*/
+
+        /*Toast toast = Toast.makeText(this, "Center X:" + imgCenter.getX() + ", Center Y:" + imgCenter.getY(), Toast.LENGTH_SHORT);
+        toast.show();*/
 
         /*MainTimerTask timerTask = new MainTimerTask();
         mTimer = new Timer();
@@ -117,6 +138,79 @@ public class LockScreenActivity extends FragmentActivity implements OnGestureLis
         });
     }
 
+    private final int START_DRAG = 0;
+    private final int END_DRAG = 1;
+    private int isMoving;
+    private float offset_x, offset_y;
+    private boolean start_yn = true;
+
+    public boolean onTouch(View v, MotionEvent event) {
+        imgCenter = (ImageButton) this.findViewById(R.id.imgCenter);
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (start_yn) {
+
+                /*offset_x = event.getRawX();
+                offset_y = event.getRawY();*/
+                start_yn = false;
+            }
+            isMoving = START_DRAG;
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            v.findViewById(R.id.imgCenter).setX(470);
+            v.findViewById(R.id.imgCenter).setY(1480);
+            isMoving = END_DRAG;
+        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            if (isMoving == START_DRAG) {
+                /*v.setX((int) event.getX() - offset_x);
+                v.setY((int) event.getY() - offset_y);*/
+                /*v.findViewById(R.id.imgCenter).setX((int) event.getX() - offset_x);
+                v.findViewById(R.id.imgCenter).setY((int) event.getY() - offset_y);*/
+                v.findViewById(R.id.imgCenter).setX((int) event.getX());
+                v.findViewById(R.id.imgCenter).setY((int) event.getY());
+            }
+        }
+        return false;
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+
+        return gestureScanner.onTouchEvent(event);
+
+        /*int eventaction = event.getAction();
+        int X = (int)event.getX();
+        int Y = (int)event.getY();
+
+        switch(eventaction)
+        {
+            case MotionEvent.ACTION_DOWN : // 손가락이 스크린에 닿았을 때
+                break;
+            case MotionEvent.ACTION_MOVE : // 닿은 채로 손가락을 움직일 때
+                break;
+            case MotionEvent.ACTION_UP : // 닿았던 손가락을 스크린에서 뗄 때
+                break;
+        }*/
+
+        /*int X = (int)event.getX();
+        int eventaction = event.getAction();
+        switch(eventaction){
+            case MotionEvent.ACTION_UP:
+                //			posX += (lastX - firstX);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                xValue= X - firstX;
+                AbsoluteLayout .LayoutParams params = new AbsoluteLayout .LayoutParams( 50, ViewGroup.LayoutParams.WRAP_CONTENT, posX+xValue, 0);
+                posX +=xValue;
+                testa.setLayoutParams(params );
+                testa.setText(""+posX);
+                break;
+            case MotionEvent.ACTION_DOWN:
+                firstX = X;
+                break;
+        }
+
+        return true;*/
+    }
+
     /*private Handler mHandler = new Handler();
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
@@ -161,10 +255,6 @@ public class LockScreenActivity extends FragmentActivity implements OnGestureLis
         mTimer.schedule(timerTask, 500, 3000);
         super.onResume();
     }*/
-
-    public boolean onTouchEvent(MotionEvent me) {
-        return gestureScanner.onTouchEvent(me);
-    }
 
     public boolean onDown(MotionEvent e) {
         //viewA.setText("-" + "DOWN" + "-");
@@ -211,12 +301,11 @@ public class LockScreenActivity extends FragmentActivity implements OnGestureLis
     }
 
     public void onLongPress(MotionEvent e) {
-        Toast mToast = Toast.makeText(getApplicationContext(), "Long Press", Toast.LENGTH_SHORT);
-        mToast.show();
+        /*Toast mToast = Toast.makeText(getApplicationContext(), "Long Press", Toast.LENGTH_SHORT);
+        mToast.show();*/
     }
 
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        //viewA.setText("-" + "SCROLL" + "-");
         return true;
     }
 
@@ -225,8 +314,8 @@ public class LockScreenActivity extends FragmentActivity implements OnGestureLis
     }
 
     public boolean onSingleTapUp(MotionEvent e) {
-        Toast mToast = Toast.makeText(getApplicationContext(), "Single Tap", Toast.LENGTH_SHORT);
-        mToast.show();
+        /*Toast mToast = Toast.makeText(getApplicationContext(), "Single Tap", Toast.LENGTH_SHORT);
+        mToast.show();*/
         return true;
     }
 }
