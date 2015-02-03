@@ -1,7 +1,6 @@
 package com.example.nortika.myapplication;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,8 +29,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     public   boolean onTouch (View view, MotionEvent event) {
-        int eventaction = event.getAction ();
-        switch (eventaction) {
+        int eventAction = event.getAction ();
+        switch (eventAction) {
             case MotionEvent.ACTION_DOWN:
                 x = (int) event.getX ();
                 y = (int) event.getY ();
