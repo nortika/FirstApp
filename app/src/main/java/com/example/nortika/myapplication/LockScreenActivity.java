@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
+import android.support.v7.app.ActionBarActivity;
 
 /**
  * Created by nortika on 2015-01-15.
