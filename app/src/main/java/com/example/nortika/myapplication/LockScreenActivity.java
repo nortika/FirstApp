@@ -56,7 +56,7 @@ public class LockScreenActivity extends Activity implements OnGestureListener, V
         btnRight = (ImageButton)findViewById(R.id.imgRight);
         btnLeft = (ImageButton)findViewById(R.id.imgLeft);
         taskLabel= (TextView)findViewById(R.id.txtTaskList);
-        dateLabel=(TextView)findViewById(R.id.txtDate);
+        dateLabel=(TextView)findViewById(R.id.txtWeek);
 
         //날짜표시
         Date rightNow = new Date();

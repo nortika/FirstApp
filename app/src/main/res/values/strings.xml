@@ -4,5 +4,6 @@
     <string name="app_name">My Application</string>
     <string name="hello_world">"MOM's Memory"</string>
     <string name="action_settings">Settings</string>
+    <color name="bg">#FFFCFCFC</color>
 
 </resources>

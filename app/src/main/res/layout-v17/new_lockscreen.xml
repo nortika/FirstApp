@@ -17,12 +17,12 @@
         android:textSize="60dip"
         android:textColor="#ffedff3e"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/txtDate"
+        android:layout_above="@+id/txtWeek"
         android:text="ㅋ" />
 
     <TextView android:text="aa" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtDate"
+        android:id="@+id/txtWeek"
         android:textSize="30dip"
         android:typeface="normal"
         android:textColor="#ffedff3e"
