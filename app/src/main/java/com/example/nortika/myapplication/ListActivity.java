@@ -21,7 +21,7 @@ public class ListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        mListView = (ListView)findViewById(R.id.listView1);
+        mListView = (ListView)findViewById(R.id.listView2);
 
         String[] items = new String[20];
         for (int i = 0; i < items.length; i++) {
@@ -33,10 +33,8 @@ public class ListActivity extends Activity {
         mListView.setAdapter(mAdapter);
 
         SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener(
-                        mListView,
+                new SwipeDismissListViewTouchListener(mListView,
                         new SwipeDismissListViewTouchListener.DismissCallbacks() {
-
                             @Override
                             public boolean canDismiss(int position) {
                                 return true;
@@ -44,19 +42,18 @@ public class ListActivity extends Activity {
 
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                if(isDelete){
-                                    for (int position : reverseSortedPositions) {
-                                        mAdapter.remove(mAdapter.getItem(position));
-                                    }
-                                    mAdapter.notifyDataSetChanged();
+                                for (int position : reverseSortedPositions) {
+                                    mAdapter.remove(mAdapter.getItem(position));
                                 }
+                                mAdapter.notifyDataSetChanged();
                             }
                         });
         mListView.setOnTouchListener(touchListener);
         mListView.setOnScrollListener(touchListener.makeScrollListener());
     }
 
-    private void DialogSimple(){
+
+    /*private void DialogSimple(){
 
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
 
@@ -79,5 +76,5 @@ public class ListActivity extends Activity {
         // Icon for AlertDialog
         // alert.setIcon(R.drawable.icon);
         alert.show();
-    }
+    }*/
 }

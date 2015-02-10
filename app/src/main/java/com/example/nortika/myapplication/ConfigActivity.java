@@ -4,17 +4,23 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -28,13 +34,18 @@ public class ConfigActivity extends Activity implements TextView.OnEditorActionL
     private EditText editText;
     private TextView txtWeek;
 
+    DBHelper dbHelper;
     DBAdapter handler;
+
+    ListView mListView;
+    ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //dbHelper = new DBHelper(getApplicationContext());
         handler = new DBAdapter(getApplicationContext());
 
         editText = (EditText)findViewById(R.id.editText);
@@ -72,6 +83,58 @@ public class ConfigActivity extends Activity implements TextView.OnEditorActionL
                 stopService(intent);
             }
         });
+
+        // 리스트 뷰
+        mListView = (ListView)findViewById(R.id.listView2);
+
+        Cursor cursor = handler.select_all_task();
+        //startManagingCursor(cursor);
+        /*String[] items = new String[20];
+        for (int i = 0; i < items.length; i++) {
+            items[i] = "Item " + (i + 1);
+        }*/
+
+        ArrayList<String> items = new ArrayList<String>();
+        while(cursor.moveToNext()){
+            items.add(cursor.getString(cursor.getColumnIndex("task")));
+        }
+
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text2, items);
+        mListView.setAdapter(mAdapter);
+
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(mListView,
+                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    mAdapter.remove(mAdapter.getItem(position));
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+        mListView.setOnTouchListener(touchListener);
+        mListView.setOnScrollListener(touchListener.makeScrollListener());
+    }
+
+    protected  void viewList(){
+
+        mListView = (ListView)findViewById(R.id.listView2);
+        Cursor cursor = handler.select_all_task();
+
+        ArrayList<String> items = new ArrayList<String>();
+        while(cursor.moveToNext()){
+            items.add(cursor.getString(cursor.getColumnIndex("task")));
+        }
+
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text2, items);
+        mListView.setAdapter(mAdapter);
     }
 
     protected String getWeek() {
@@ -94,14 +157,18 @@ public class ConfigActivity extends Activity implements TextView.OnEditorActionL
     private void DialogSimple(){
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
 
-
         alt_bld.setMessage("Do you want to add this ?").setCancelable(
                 false).setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        editText = (EditText)findViewById(R.id.editText);
+                        editText = (EditText) findViewById(R.id.editText);
                         handler.insert_task(editText.getText().toString());
                         handler.Close();
+
+                        mAdapter.insert(editText.getText().toString(), 0);
+                        mAdapter.notifyDataSetChanged();
+
+                        mListView.setAdapter(mAdapter);
                         editText.setText("");
                     }
                 }).setNegativeButton("No",

@@ -51,7 +51,7 @@ public class DBAdapter {
             values.put("task",task);
 
             rightNow = new Date();
-            SimpleDateFormat CurDateFormat = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS.SSS");
+            SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String strCurDate = CurDateFormat.format(rightNow);
 
             values.put("reg_date",strCurDate);
